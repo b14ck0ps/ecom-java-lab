@@ -19,9 +19,11 @@ public class UserRepository {
 
     public List<User> list() {
         Session session = sessionFactory.getCurrentSession();
-        TypedQuery<User> departmentQuery = session.createQuery("from User", User.class);
-        return departmentQuery.getResultList();
+        TypedQuery<User> query = session.createQuery(
+                "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.customer.addresses", User.class);
+        return query.getResultList();
     }
+
 
     public boolean create(User user) {
         Session session = sessionFactory.getCurrentSession();

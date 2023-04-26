@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -19,9 +18,11 @@ public class CustomerRepository {
 
     public List<Customer> list() {
         Session session = sessionFactory.getCurrentSession();
-        TypedQuery<Customer> departmentQuery = session.createQuery("from Customer", Customer.class);
-        return departmentQuery.getResultList();
+        TypedQuery<Customer> query = session.createQuery("SELECT DISTINCT c FROM Customer c LEFT JOIN FETCH c.addresses", Customer.class);
+        return query.getResultList();
     }
+
+
 
     public boolean create(Customer customer) {
         Session session = sessionFactory.getCurrentSession();

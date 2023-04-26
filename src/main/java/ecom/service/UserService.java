@@ -1,5 +1,6 @@
 package ecom.service;
 
+import ecom.domain.Address;
 import ecom.domain.Customer;
 import ecom.domain.User;
 import ecom.dto.UserDto;
@@ -20,10 +21,12 @@ public class UserService {
     private UserRepository userRepository;
 
     private CustomerService customerService;
+    private final AddressService addressService;
 
-    public UserService(UserRepository userRepository, CustomerService customerService) {
+    public UserService(UserRepository userRepository, CustomerService customerService, AddressService addressService) {
         this.userRepository = userRepository;
         this.customerService = customerService;
+        this.addressService = addressService;
     }
 
     public List<User> list() {
@@ -51,7 +54,14 @@ public class UserService {
         customer.setGender(userDto.getGender());
         customer.setDateOfBirth(userDto.getDateOfBirth());
         customer.setUser(user);
-        return customerService.create(customer);
+        customerService.create(customer);
+
+        Address address = new Address();
+        address.setAddress(userDto.getAddress());
+        address.setCustomer(customer);
+        addressService.create(address);
+
+        return true;
     }
 
     public boolean update(User user) {

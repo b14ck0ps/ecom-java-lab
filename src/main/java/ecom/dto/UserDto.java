@@ -1,5 +1,6 @@
 package ecom.dto;
 
+import ecom.domain.Address;
 import ecom.domain.Gender;
 
 import javax.validation.constraints.NotNull;
@@ -23,6 +24,9 @@ public class UserDto {
 
     @NotNull
     private Gender gender;
+
+    @NotNull
+    private String address;
 
     public String getUsername() {
         return username;
@@ -62,5 +66,13 @@ public class UserDto {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

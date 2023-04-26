@@ -1,10 +1,11 @@
 package ecom.controller;
 
-import ecom.domain.Customer;
+import ecom.domain.Address;
 import ecom.domain.User;
 import ecom.dto.UserDto;
+import ecom.service.AddressService;
+import ecom.service.CustomerService;
 import ecom.service.UserService;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.beans.PropertyEditorSupport;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -27,9 +27,14 @@ import java.time.format.DateTimeFormatter;
 public class UserController {
 
     private UserService userService;
+    private final AddressService addressService;
 
-    public UserController(UserService userService) {
+    private final CustomerService customerService;
+
+    public UserController(UserService userService, AddressService addressService, CustomerService customerService) {
         this.userService = userService;
+        this.addressService = addressService;
+        this.customerService = customerService;
     }
 
     @InitBinder

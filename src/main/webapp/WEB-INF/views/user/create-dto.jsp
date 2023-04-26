@@ -36,6 +36,12 @@
 
     <br><br>
 
+    <label for="full_name">Address:</label>
+    <form:input path="address" id="address"/>
+    <form:errors path="address"/>
+
+    <br><br>
+
     <label for="dob">Date Of Birth:</label>
     <form:input type="date" path="dateOfBirth" id="dob"/>
     <form:errors path="dateOfBirth"/>

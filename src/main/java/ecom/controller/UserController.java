@@ -1,10 +1,11 @@
 package ecom.controller;
 
-import ecom.domain.Address;
+import ecom.domain.Product;
 import ecom.domain.User;
 import ecom.dto.UserDto;
 import ecom.service.AddressService;
 import ecom.service.CustomerService;
+import ecom.service.ProductService;
 import ecom.service.UserService;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -30,11 +31,13 @@ public class UserController {
     private final AddressService addressService;
 
     private final CustomerService customerService;
+    private final ProductService productService;
 
-    public UserController(UserService userService, AddressService addressService, CustomerService customerService) {
+    public UserController(UserService userService, AddressService addressService, CustomerService customerService, ProductService productService) {
         this.userService = userService;
         this.addressService = addressService;
         this.customerService = customerService;
+        this.productService = productService;
     }
 
     @InitBinder
@@ -110,5 +113,20 @@ public class UserController {
     public String delete(@RequestParam("userId") Long userId) {
         userService.delete(userId);
         return "redirect:/users/list";
+    }
+
+    @RequestMapping("/order_create")
+    public String createOrder(Model model) {
+        model.addAttribute("products", productService.list());
+        model.addAttribute("customers", customerService.list());
+        return "user/order/create";
+    }
+    @RequestMapping("/store_order")
+    public String store(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult) throws SQLException {
+        if (bindingResult.hasErrors()) {
+            return "user/order/create";
+        }
+        productService.create(product);
+        return "redirect:/user/list";
     }
 }

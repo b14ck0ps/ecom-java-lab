@@ -5,6 +5,9 @@ import ecom.domain.Product;
 import ecom.dto.OrderDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class OrderService {
 
@@ -24,8 +27,11 @@ public class OrderService {
         Product product = productService.get(productId);
         Customer customer = customerService.get(customerId);
 
-        product.getCustomers().add(customer);
+        List<Customer> customers = new ArrayList<>();
+        customers.add(customer);
+        product.setCustomers(customers);
 
         productService.create(product);
+
     }
 }

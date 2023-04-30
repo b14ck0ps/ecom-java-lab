@@ -115,6 +115,7 @@ public class UserController {
 
     @RequestMapping("/order_create")
     public String createOrder(Model model) {
+        model.addAttribute("orderDto", new OrderDto());
         model.addAttribute("products", productService.list());
         model.addAttribute("customers", customerService.list());
         return "user/order/create";
@@ -126,6 +127,6 @@ public class UserController {
             return "user/order/create";
         }
         orderService.createOrder(orderDto);
-        return "redirect:/user/list";
+        return "redirect:/users/list";
     }
 }

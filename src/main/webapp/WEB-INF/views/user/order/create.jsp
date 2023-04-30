@@ -10,27 +10,26 @@
 
 <h1>Create Order</h1>
 
-<form:form action="store_order" modelAttribute="products">
-    <label for="product"> Product Name:</label>
-    <form:select path="products">
+<form:form action="store_order" method="post" modelAttribute="orderDto">
+    <label for="product-select">Select a product:</label>
+    <select name="productId" id="product-select">
         <c:forEach items="${products}" var="product">
-            <form:option value="${product.id}" label="${product.name}"/>
+            <option value="${product.id}">${product.name}</option>
         </c:forEach>
-    </form:select>
+    </select>
 
     <br><br>
 
-    <label>Customer:</label>
-    <form:select path="customers">
+    <label for="customer-select">Select a customer:</label>
+    <select name="customerId" id="customer-select">
         <c:forEach items="${customers}" var="customer">
-            <form:option value="${customer.id}" label="${customer.user.fullName}"/>
+            <option value="${customer.id}">${customer.user.fullName}</option>
         </c:forEach>
-    </form:select>
+    </select>
 
     <br><br>
 
-    <input type="submit">
-
+    <input type="submit" value="Submit">
 </form:form>
 
 </body>

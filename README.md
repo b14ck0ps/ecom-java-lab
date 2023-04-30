@@ -1,8 +1,8 @@
 ### ecom-java-lab-task2
 
-- [Create an order from customer. (example given as in product side)](https://github.com/b14ck0ps/ecom-java-lab/commit/da62fbf24df84a4c6341d41d8897bf90e8346f5d)
+- [Create an order from customer. (example given as in product side)](https://github.com/b14ck0ps/ecom-java-lab-task-2/commit/d452d030fab0089881877351682c786b50758f78)
 - [Save address of a customer while creating customer or user (One to Many)](https://github.com/b14ck0ps/ecom-java-lab/commit/aa5fc0695311fc80c95e20f2df7d2213321d76e4)
-- [Use lazy loading while fetching data in one to many association](https://github.com/b14ck0ps/ecom-java-lab/commit/8958db2511a0ad1625fa260f276f26f00cb92103)
+- [Use lazy loading while fetching data in one to many association](https://github.com/b14ck0ps/ecom-java-lab-task-2/commit/ac9e8abaa1b64883e64361f1432285fcb7273bb9)
 
 
 ### Schema

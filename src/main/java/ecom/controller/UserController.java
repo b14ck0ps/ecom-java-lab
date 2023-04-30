@@ -115,9 +115,10 @@ public class UserController {
 
     @RequestMapping("/order_create")
     public String createOrder(Model model) {
-        model.addAttribute("orderDto", new OrderDto());
-        model.addAttribute("products", productService.list());
-        model.addAttribute("customers", customerService.list());
+        OrderDto orderDto = new OrderDto();
+        orderDto.setCustomers(customerService.list());
+        orderDto.setProduct(productService.list());
+        model.addAttribute("orderDto", orderDto);
         return "user/order/create";
     }
 
